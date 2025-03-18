@@ -21,11 +21,11 @@ def process_cli_input(file_path, history, t) -> None:
             value = int(args[1])
             if index < 0 or index >3 :
                 # Raise error if index out of bounds
-                print(f"Invalid Input - Error: {index}")
+                print(f"Invalid Input - Error: {index + 1}")
             else:
                 # Mutate state values and append the change in history log
                 mutate_database(file_path, index, value)
-                history.append(f"{t} set {index} {value}")
+                history.append(f"{t} set {index + 1} {value}")
     except Exception as e:
         # Incorrect exeuction code
         print(f"Invalid Input - Error: {str(e)}")
@@ -47,7 +47,7 @@ def cron_job(state_values, t, history):
     
     # After every ten minutes swap user 1 and user 2
     if (t % 10 == 0):
-        history.append(F"{t} swap {state_values[0]} {state_values[1]}")     # Append cron job operation into history log
+        history.append(F"{t} swap {state_values[0] + 1} {state_values[1]}")     # Append cron job operation into history log
         state_values[0], state_values[1] = state_values[1], state_values[0]   # Cron job swaps user 1 and user 2
     
     return state_values
