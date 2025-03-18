@@ -71,7 +71,6 @@ def main():
         
         # Gather the CLI input from user
         process_cli_input(file_path, history, t)
-        print(state_values)
         
         # Write Your Code Here End
 
