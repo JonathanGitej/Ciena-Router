@@ -21,13 +21,16 @@ def process_cli_input(file_path, history, t) -> None:
             value = int(args[1])
             if index < 0 or index >3 :
                 # Raise error if index out of bounds
-                print(f"Invalid Input - Error: {index + 1}")
+                print(f"Invalid Index - Error: {index + 1}")
             else:
                 # Mutate state values and append the change in history log
                 mutate_database(file_path, index, value)
                 history.append(f"{t} set {index + 1} {value}")
+        else:
+            # Incorrect exeuction code, raise error
+            print(f"{command} is not a valid code")
     except Exception as e:
-        # Incorrect exeuction code
+
         print(f"Invalid Input - Error: {str(e)}")
 
       
@@ -71,6 +74,7 @@ def main():
         
         # Gather the CLI input from user
         process_cli_input(file_path, history, t)
+        print(state_values)
         
         # Write Your Code Here End
 
